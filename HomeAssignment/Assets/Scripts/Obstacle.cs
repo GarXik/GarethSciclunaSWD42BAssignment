@@ -14,6 +14,9 @@ public class Obstacle : MonoBehaviour
     [SerializeField] GameObject DeathVFX;
     [SerializeField] float explosionDuration = 1f;
 
+    [SerializeField] AudioClip obstacleHitSound;
+    [SerializeField] [Range(0, 1)] float obstacleHitSoundVolume = 0.75f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +66,7 @@ public class Obstacle : MonoBehaviour
         Destroy(explosion, explosionDuration);
 
         //Play Audio
-        //AudioSource.PlayClipAtPoint(enemyDeathSound, Camera.main.transform.position, enemyDeathSoundVolume);
+        AudioSource.PlayClipAtPoint(obstacleHitSound, Camera.main.transform.position, obstacleHitSoundVolume);
 
         //FindObjectOfType<GameSession>().AddToScore(scoreValue);
     }

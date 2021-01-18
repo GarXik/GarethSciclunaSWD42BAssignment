@@ -134,6 +134,8 @@ MonoBehaviour:
   DeathVFX: {fileID: 2810966596642115541, guid: 4092594957596704cb272fa6737fdef7,
     type: 3}
   explosionDuration: 1
+  obstacleHitSound: {fileID: 8300000, guid: 897208677f9ee0548a933ccf62d69385, type: 3}
+  obstacleHitSoundVolume: 0.75
 --- !u!60 &4264864941744917753
 PolygonCollider2D:
   m_ObjectHideFlags: 0
