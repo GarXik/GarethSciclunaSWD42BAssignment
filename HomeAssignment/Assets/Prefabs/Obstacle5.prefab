@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2526638028446751382}
   - component: {fileID: 1331236639934547581}
   - component: {fileID: 8345131065364263640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obstacle5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,6 +132,9 @@ MonoBehaviour:
   laserPrefab: {fileID: 6296131908121654446, guid: 182cac0e8d159114d9d681501aebb936,
     type: 3}
   enemyLaserSpeed: 10
+  DeathVFX: {fileID: 2810966596642115541, guid: 4092594957596704cb272fa6737fdef7,
+    type: 3}
+  explosionDuration: 1
 --- !u!60 &1331236639934547581
 PolygonCollider2D:
   m_ObjectHideFlags: 0

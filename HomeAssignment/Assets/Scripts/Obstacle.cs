@@ -11,6 +11,9 @@ public class Obstacle : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float enemyLaserSpeed = 10f;
 
+    [SerializeField] GameObject DeathVFX;
+    [SerializeField] float explosionDuration = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,18 +27,45 @@ public class Obstacle : MonoBehaviour
 
         if (shotCounter <= 0f)
         {
-            EnemyFire();
+            ObstacleFire();
 
             //reset Shotcounter after every fire
             shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         }
     }
 
-    private void EnemyFire()
+    private void ObstacleFire()
     {
-        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity); // place laserprefab on player ship position
+        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity); 
 
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -enemyLaserSpeed);// this will make it shoot to the y-axis at a speed of 15
+    }
+
+    private void OnTriggerEnter2D(Collider2D otherObject)
+    {
+        Player plr = otherObject.gameObject.GetComponent<Player>();
+
+        //if obstacle hits player destroy it
+        if (plr != null)
+        {
+            ObstacleDie();
+        }
+
+    }
+
+    private void ObstacleDie()
+    {
+        Destroy(gameObject);
+        //create an explosion particle
+        GameObject explosion = Instantiate(DeathVFX, transform.position, Quaternion.identity);
+
+        //destroy explosion after 1s
+        Destroy(explosion, explosionDuration);
+
+        //Play Audio
+        //AudioSource.PlayClipAtPoint(enemyDeathSound, Camera.main.transform.position, enemyDeathSoundVolume);
+
+        //FindObjectOfType<GameSession>().AddToScore(scoreValue);
     }
 
     // Update is called once per frame

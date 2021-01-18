@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1085575035187114106}
   - component: {fileID: 1085575035187114101}
   - component: {fileID: 1085575035187114100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,5 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70101468576636b40934ea8bb410c200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 50
   moveSpeed: 10
   padding: 1
+  playerHitSound: {fileID: 8300000, guid: 2f80710d4318e8e429b252a63e28de68, type: 3}
+  playerHitSoundVolume: 0.75

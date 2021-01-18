@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 9087952196066135606}
   - component: {fileID: 6308550234256778372}
   - component: {fileID: 4755696478463393084}
-  m_Layer: 0
+  - component: {fileID: 8596858785584451370}
+  m_Layer: 10
   m_Name: PoliceLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,3 +121,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.13, y: 0.54}
   m_Direction: 0
+--- !u!114 &8596858785584451370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401343365447504753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74be2cbaed67da428a8a0c97ab6f201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1

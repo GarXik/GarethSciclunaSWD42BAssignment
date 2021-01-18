@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int Health = 50;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 0.7f;
     float xMin, xMax;
+
+    [SerializeField] AudioClip playerHitSound;
+    [SerializeField] [Range(0, 1)] float playerHitSoundVolume = 0.75f;
 
     //Camera Border/Boundary
     private void SetupMoveBoundaries()
@@ -39,5 +43,47 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D otherObject)
+    {
+        DamageDealer dmg = otherObject.gameObject.GetComponent<DamageDealer>();
+
+        if (!dmg)
+        {
+            return;
+        }
+
+        ProcessHit(dmg);
+
+    }
+
+    private void ProcessHit(DamageDealer dmg)
+    {
+        Health -= dmg.GetDamage();
+        dmg.hit();
+
+        //Play Audio 
+        AudioSource.PlayClipAtPoint(playerHitSound, Camera.main.transform.position, playerHitSoundVolume);
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+
+        //Finds Level Object in hierarchy and run its method
+        //Load GameOver Scene
+        FindObjectOfType<Level>().LoadGameOver();
+    }
+
+    public int getHealth()
+    {
+        return Health;
     }
 }
