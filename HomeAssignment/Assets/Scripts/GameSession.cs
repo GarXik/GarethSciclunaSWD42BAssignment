@@ -40,6 +40,16 @@ public class GameSession : MonoBehaviour
         score += addScore;
         //Play Audio
         AudioSource.PlayClipAtPoint(gainPointsSound, Camera.main.transform.position, gainPointsSoundVolume);
+
+        //load Winner Scene if player has 100 points
+        if (score >= 100)
+        {
+            Level levelobj = FindObjectOfType<Level>(); 
+            if (levelobj)
+            {
+                levelobj.LoadWinner();
+            }
+        }
     }
 
     public void ResetGame()
