@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy Wave Config")]
+[CreateAssetMenu(menuName = "obstacle Wave Config")]
 public class WaveConfig : ScriptableObject
 {
-    //the enemy chosen for this wave
-    [SerializeField] GameObject enemyPrefab;
+    //the obstacle chosen for this wave
+    [SerializeField] GameObject obstaclePrefab;
 
     //the path chosen for this wave
     [SerializeField] GameObject pathPrefab;
@@ -14,16 +14,13 @@ public class WaveConfig : ScriptableObject
     //Time between each spawn
     [SerializeField] float timeBetweenSpawns = 0.5f;
 
-    //randomise the time difference
-    //[SerializeField] float spawnRandomFactor = 0.3f;
+    //numbers of Obstacles in waves
+    [SerializeField] int numberOfObstacles = 5;
 
-    //numbers of enemies in waves
-    [SerializeField] int numberOfEnemies = 5;
+    //obstacle movement speed
+    [SerializeField] float obstacleMoveSpeed = 2f;
 
-    //Enemy movement speed
-    [SerializeField] float enemyMoveSpeed = 2f;
-
-    public GameObject GetEnemyPrefab() { return enemyPrefab; }
+    public GameObject GetObstaclePrefab() { return obstaclePrefab; }
 
     public List<Transform> GetWaypoints()
     {
@@ -42,11 +39,9 @@ public class WaveConfig : ScriptableObject
 
     public float GetTimeBetweenSpawns() { return timeBetweenSpawns; }
 
-    //public float GetSpawnRandomFactor() { return spawnRandomFactor; }
+    public int GetNumberOfObstacles() { return numberOfObstacles; }
 
-    public int GetNumberOfEnemies() { return numberOfEnemies; }
-
-    public float GetEnemyMoveSpeed() { return enemyMoveSpeed; }
+    public float GetObstacleMoveSpeed() { return obstacleMoveSpeed; }
 
     // Start is called before the first frame update
     void Start()

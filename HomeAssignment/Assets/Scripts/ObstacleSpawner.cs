@@ -39,22 +39,22 @@ public class ObstacleSpawner : MonoBehaviour
         foreach (WaveConfig currentWave in waveConfigsList)
         {
             //the coroutine waits for wave to spawn before yielding and going to next wave in list
-            yield return StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+            yield return StartCoroutine(SpawnAllObstaclesInWave(currentWave));
         }
     }
 
-    private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveToSpawn)
+    private IEnumerator SpawnAllObstaclesInWave(WaveConfig waveToSpawn)
     {
 
-        for (int i = 0; i < waveToSpawn.GetNumberOfEnemies(); i++)
+        for (int i = 0; i < waveToSpawn.GetNumberOfObstacles(); i++)
         {
-            //spawn enemy from wavetoSpawn
+            //spawn Obstacle from wavetoSpawn
             //at the position of the wavepoint(0) of the wavetoSpawn
-            var newEnemy = Instantiate(waveToSpawn.GetEnemyPrefab(), waveToSpawn.GetWaypoints()[0].transform.position, Quaternion.identity);
+            var newObstacle = Instantiate(waveToSpawn.GetObstaclePrefab(), waveToSpawn.GetWaypoints()[0].transform.position, Quaternion.identity);
 
-            //the wave will be chosen from the newEnemy and the type of Enemy it is
+            //the wave will be chosen from the newObstacle and the type of Obstacle it is
             //the wave will be selected from a script not from unity
-            newEnemy.GetComponent<ObstaclePathing>().SetWaveConfig(waveToSpawn);//In vain if you're setting wave from SerializedField on Unity but won't cause error.
+            newObstacle.GetComponent<ObstaclePathing>().SetWaveConfig(waveToSpawn);//In vain if you're setting wave from SerializedField on Unity but won't cause error.
 
             yield return new WaitForSeconds(waveToSpawn.GetTimeBetweenSpawns());
         }

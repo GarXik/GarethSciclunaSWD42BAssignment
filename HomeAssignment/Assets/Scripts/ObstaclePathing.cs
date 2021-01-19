@@ -8,7 +8,7 @@ public class ObstaclePathing : MonoBehaviour
     //a list of points type Transform
     [SerializeField] List<Transform> waypoints;//This will be filled in line 20 can leave empty in editor
 
-    //[SerializeField] float enemyMoveSpeed = 2f;//We don't need this since we can take speed from waveconfig
+    //[SerializeField] float obstacleMoveSpeed = 2f;//We don't need this since we can take speed from waveconfig
 
     [SerializeField] WaveConfig waveConfig;
 
@@ -18,7 +18,7 @@ public class ObstaclePathing : MonoBehaviour
     void Start()
     {
         waypoints = waveConfig.GetWaypoints();
-        //transform.position = waypoints[waypointIndex].transform.position; // this is already being done in the Enemy spawner when we instantiate
+        //transform.position = waypoints[waypointIndex].transform.position; // this is already being done in the Obstacle spawner when we instantiate
     }
 
     public void SetWaveConfig(WaveConfig waveToSet)
@@ -26,7 +26,7 @@ public class ObstaclePathing : MonoBehaviour
         waveConfig = waveToSet;
     }
 
-    private void EnemyMove()
+    private void ObstacleMove()
     {
         // 012                  3-1 = 2
         if (waypointIndex <= waypoints.Count - 1)
@@ -36,11 +36,11 @@ public class ObstaclePathing : MonoBehaviour
 
             targetPosition.z = 0f;
 
-            //set the enemy movement per frame
-            var enemyMovement = waveConfig.GetEnemyMoveSpeed() * Time.deltaTime;
+            //set the Obstacle movement per frame
+            var ObstacleMovement = waveConfig.GetObstacleMoveSpeed() * Time.deltaTime;
 
-            //move from current position to next position, at the enemy movement speed
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, enemyMovement);
+            //move from current position to next position, at the Obstacle movement speed
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, ObstacleMovement);
 
             //if targetposition is reached update the next waypoint
             if (transform.position == targetPosition)
@@ -52,12 +52,12 @@ public class ObstaclePathing : MonoBehaviour
         {
             //Destroy(gameObject); -- will be done by obstacle destroyer
         }
-        //if enemy reaches last waypoint 
+        //if obstacle reaches last waypoint 
     }
 
     // Update is called once per frame
     void Update()
     {
-        EnemyMove();
+        ObstacleMove();
     }
 }

@@ -66,8 +66,6 @@ public class Obstacle : MonoBehaviour
 
         //Play Audio
         AudioSource.PlayClipAtPoint(obstacleHitSound, Camera.main.transform.position, obstacleHitSoundVolume);
-
-        //FindObjectOfType<GameSession>().AddToScore(scoreValue);
     }
 
     // Update is called once per frame
