@@ -147,3 +147,8 @@ MonoBehaviour:
   padding: 1
   playerHitSound: {fileID: 8300000, guid: 2f80710d4318e8e429b252a63e28de68, type: 3}
   playerHitSoundVolume: 0.75
+  playerDeathSound: {fileID: 8300000, guid: 897208677f9ee0548a933ccf62d69385, type: 3}
+  playerDeathSoundVolume: 0.75
+  DeathVFX: {fileID: 2810966596642115541, guid: 4092594957596704cb272fa6737fdef7,
+    type: 3}
+  explosionDuration: 1

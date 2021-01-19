@@ -50,7 +50,7 @@ public class ObstaclePathing : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject); -- will be done by obstacle destroyer
         }
         //if enemy reaches last waypoint 
     }

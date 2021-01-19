@@ -61,7 +61,6 @@ public class Obstacle : MonoBehaviour
         Destroy(gameObject);
         //create an explosion particle
         GameObject explosion = Instantiate(DeathVFX, transform.position, Quaternion.identity);
-
         //destroy explosion after 1s
         Destroy(explosion, explosionDuration);
 

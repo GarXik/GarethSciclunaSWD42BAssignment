@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip playerHitSound;
     [SerializeField] [Range(0, 1)] float playerHitSoundVolume = 0.75f;
 
+    [SerializeField] AudioClip playerDeathSound;
+    [SerializeField] [Range(0, 1)] float playerDeathSoundVolume = 0.75f;
+
+    [SerializeField] GameObject DeathVFX;
+    [SerializeField] float explosionDuration = 1f;
+
     //Camera Border/Boundary
     private void SetupMoveBoundaries()
     {
@@ -76,6 +82,14 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+
+        //create an explosion particle
+        GameObject explosion = Instantiate(DeathVFX, transform.position, Quaternion.identity);
+        //destroy explosion after 1s
+        Destroy(explosion, explosionDuration);
+
+        //Play Audio 
+        AudioSource.PlayClipAtPoint(playerDeathSound, Camera.main.transform.position, playerDeathSoundVolume);
 
         //Finds Level Object in hierarchy and run its method
         //Load GameOver Scene
