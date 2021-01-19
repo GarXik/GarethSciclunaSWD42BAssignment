@@ -9,7 +9,7 @@ public class ObstacleDestroyer : MonoBehaviour
         Obstacle hasObstacle = otherObject.gameObject.GetComponent<Obstacle>();
         if (hasObstacle != null)//otherObject is an enemy
         {
-            print("Enemy Hit");
+            FindObjectOfType<GameSession>().AddToScore(5);
         }
 
         Destroy(otherObject.gameObject);

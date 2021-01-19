@@ -5,16 +5,19 @@ using UnityEngine;
 public class GameSession : MonoBehaviour
 {
     int score = 0;
+    [SerializeField] AudioClip gainPointsSound;
+    [SerializeField] [Range(0, 1)] float gainPointsSoundVolume = 0.75f;
+
     private void SetupSingleton()
     {
         int numberOfGameSessions = FindObjectsOfType<GameSession>().Length;
         //if there is more than one music player destroy the last one
-        if (numberOfGameSessions > 1)//if there is already the first music player this will run
+        if (numberOfGameSessions > 1)//if there is already the first game session this will run
         {
             Destroy(gameObject);
             print("Destroyed extra gameSession");
         }
-        else// will run on the first created music player
+        else// will run on the first created session
         {
             //Do not destroy on changing scenes
             print("Preventing destroy on load - gameSession");
@@ -35,6 +38,8 @@ public class GameSession : MonoBehaviour
     public void AddToScore(int addScore)
     {
         score += addScore;
+        //Play Audio
+        AudioSource.PlayClipAtPoint(gainPointsSound, Camera.main.transform.position, gainPointsSoundVolume);
     }
 
     public void ResetGame()
